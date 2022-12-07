@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<form action="/models" method="post" class="form-contact">
+
+    <label>Choose a model type:</label>
+
+    <select id="models" name="modelslist">
+    {% for m in models_ %}
+      <option value="{{m}}">{{m}}</option>
+    {% endfor %}
+    </select>
+
+    <p><label>Shape count for Yes: </label> <input type="number" name="shape_count_yes" value="4383" requied />
+    <p><label>Shape count for No: </label> <input type="number" name="shape_count_no" value="1051" requied />
+    <p><label>Sampling data: </label> <input type="checkbox" name="sampling_status" requied />
+    <p><input type="submit" value="Start creating model" />
+</form>
+{% if modelType %}
+<img src="{{url_for('static', filename='/'.join(['results','GNB','plt_bar_char.png']) )}}" align="middle" />
+{% endif %}
+
+{% endblock %}
